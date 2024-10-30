@@ -84,3 +84,6 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,linux,windows,scala
 
+.bsp
+.scala-build
+
