@@ -5,10 +5,13 @@
 ## Getting Started
 
 - [Getting Started | Scala Documentation](https://docs.scala-lang.org/getting-started/install-scala.html)
+- https://underscore.io/books/essential-scala/
 
 ## Challenges
 
 - Use build tools: [sbt](https://www.scala-sbt.org/), [Mill](https://mill-build.org/)
+- https://scalacenter.github.io/scalafix/
+- https://www.scalastyle.org/
 - Use dependencies:
   - [pprint](https://com-lihaoyi.github.io/PPrint/)
   - [fastparse](https://github.com/com-lihaoyi/fastparse)
