@@ -22,4 +22,5 @@
 - Idiomatic Scala
 - https://scala-native.org/en/stable/
 - https://scala-coroutines.github.io/coroutines/
+- Obfuscated Scala (do your worst)
 
