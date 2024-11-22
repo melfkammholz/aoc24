@@ -19,8 +19,12 @@
 - Write a test with [scalacheck](https://index.scala-lang.org/typelevel/scalacheck) (coverage report)
 - Monads
 - Concurrent Programming
+  - https://zio.dev/
+- https://typelevel.org/cats/
 - Idiomatic Scala
 - https://scala-native.org/en/stable/
 - https://scala-coroutines.github.io/coroutines/
 - Obfuscated Scala (do your worst)
+- Higher-Kinded Types
+- https://fs2.io/
 
