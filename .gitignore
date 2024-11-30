@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/macos,linux,windows,scala
-# Edit at https://www.toptal.com/developers/gitignore?templates=macos,linux,windows,scala
+# Created by https://www.toptal.com/developers/gitignore/api/macos,linux,windows,scala,metals
+# Edit at https://www.toptal.com/developers/gitignore?templates=macos,linux,windows,scala,metals
 
 ### Linux ###
 *~
@@ -49,6 +49,11 @@ Temporary Items
 # iCloud generated files
 *.icloud
 
+### Metals ###
+.metals/
+.bloop/
+project/**/metals.sbt
+
 ### Scala ###
 *.class
 *.log
@@ -82,7 +87,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/macos,linux,windows,scala
+# End of https://www.toptal.com/developers/gitignore/api/macos,linux,windows,scala,metals
 
 .bsp
 .scala-build
