@@ -5,7 +5,6 @@
 ## Getting Started
 
 - [Getting Started | Scala Documentation](https://docs.scala-lang.org/getting-started/install-scala.html)
-- https://underscore.io/books/essential-scala/
 
 ## Challenges
 
