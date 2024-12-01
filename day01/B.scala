@@ -24,5 +24,5 @@ def main(): Unit = {
   for (x <- xs) {
     res += x * cnt(x)
   }
-  println(res)  // 1530215
+  println(res)  // 26800609
 }

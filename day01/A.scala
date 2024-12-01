@@ -19,5 +19,5 @@ def main(): Unit = {
   for ((x, y) <- xs.sorted().zip(ys.sorted())) {
     res += (x - y).abs
   }
-  println(res)  // 26800609
+  println(res)  // 1530215
 }
