@@ -27,4 +27,5 @@
 - Obfuscated Scala (do your worst)
 - Higher-Kinded Types
 - https://fs2.io/
+- use `lazy` to build an infinite data structure
 
