@@ -1,4 +1,4 @@
-import scala.collection.mutable.ListBuffer
+import scala.collection.mutable.{ListBuffer, Map}
 import scala.io.Source
 
 @main
@@ -15,9 +15,14 @@ def main(): Unit = {
     }
   }
 
+  val cnt = Map().withDefault(_ => 0)
+  for (y <- ys) {
+    cnt(y) += 1
+  }
+
   var res = 0
-  for ((x, y) <- xs.sorted().zip(ys.sorted())) {
-    res += (x - y).abs
+  for (x <- xs) {
+    res += x * cnt(x)
   }
   println(res)
 }
