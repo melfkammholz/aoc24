@@ -7,9 +7,9 @@ def main(): Unit = {
   for (line <- Source.stdin.getLines) {
     val rep = line.split(" ").map(_.toInt)
 
-    val inRange: ((Int, Int)) => Boolean = t => t match {
-      case (a, b)  => (1 to 3).contains(b - a)
-    }
+    val inRange: ((Int, Int)) => Boolean = t =>
+      val (a, b) = t
+      (1 to 3).contains(b - a)
 
     val zrep = rep.zip(rep.tail)
     val okInc = zrep.forall(inRange)
