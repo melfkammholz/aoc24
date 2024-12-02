@@ -11,7 +11,7 @@
 - Use build tools: [sbt](https://www.scala-sbt.org/), [Mill](https://mill-build.org/)
 - Setup a language server: [Metals](https://scalameta.org/metals/)
 - https://scalacenter.github.io/scalafix/
-- https://www.scalastyle.org/
+- ~~https://www.scalastyle.org/~~ seems to dead, scalafix is the way to go?
 - Use dependencies:
   - [pprint](https://com-lihaoyi.github.io/PPrint/)
   - [fastparse](https://github.com/com-lihaoyi/fastparse)
