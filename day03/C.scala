@@ -2,47 +2,31 @@ package day03
 
 import scala.io.Source
 
-import cats.parse.{Parser => P, Numbers}
-
-enum Instruction:
-  case Do
-  case Dont
-  case Mul(x: Int, y: Int)
-
 object C {
   def main(args: Array[String]): Unit = {
+    val mulPat = "mul\\(([0-9]+),([0-9]+)\\)(.*)".r
     var inp = Source.stdin.getLines().mkString
 
-    val mulP =
-      for
-        _ <- P.string("mul(")
-        x <- Numbers.digits.map(_.toInt)
-        _ <- P.char(',')
-        y <- Numbers.digits.map(_.toInt)
-        _ <- P.char(')')
-      yield Instruction.Mul(x, y)
-    val doP = P.string("do()").as(Instruction.Do)
-    val dontP = P.string("don't()").as(Instruction.Dont)
-    val insP = mulP | doP | dontP
-    val nextInsP = (P.anyChar.repUntil0(insP) *> insP).?
-
-    // TODO write a proper parser
     var res = 0
     var use = true
-    while !inp.isEmpty() do
-      nextInsP.parse(inp) match {
-        case Right((r, Some(ins))) =>
-          ins match {
-            case Instruction.Do => use = true
-            case Instruction.Dont => use = false
-            case Instruction.Mul(x, y) if use => res += x * y
-            case _ =>
-          }
+    var done = false
+    while !done do
+      inp match {
+        case s"do()$r" =>
+          use = true
           inp = r
-        case _ =>
-          inp = ""
+        case s"don't()$r" =>
+          use = false
+          inp = r
+        case mulPat(y, z, r) =>
+          if use then
+            res += y.toInt * z.toInt
+          inp = r
+        case _ if !inp.isEmpty() => inp = inp.tail
+        case _ => done = true
       }
-    println(res)
+
+    println(res)  // 92626942
   }
 }
 
