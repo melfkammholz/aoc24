@@ -4,17 +4,16 @@ import scala.io.Source
 
 object A {
   def main(args: Array[String]): Unit = {
-    val mulPat = ".*?mul\\(([0-9]+),([0-9]+)\\)(.*)".r
     var inp = Source.stdin.getLines().mkString
 
+    val isNum: String => Boolean = _.forall(Character.isDigit)
     var res = 0
-    var done = false
-    while !done do
+    while !inp.isEmpty() do
       inp match {
-        case mulPat(a, b, r) =>
-          res += a.toInt * b.toInt
+        case s"mul($x,$y)$r" if isNum(x) && isNum(y) =>
+          res += x.toInt * y.toInt
           inp = r
-        case _ => done = true
+        case _ => inp = inp.tail
       }
 
     println(res)  // 159892596
