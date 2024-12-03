@@ -8,7 +8,7 @@ object A {
 
     val isNum: String => Boolean = _.forall(Character.isDigit)
     var res = 0
-    while !inp.isEmpty() do
+    while !inp.isEmpty do
       inp match {
         case s"mul($x,$y)$r" if isNum(x) && isNum(y) =>
           res += x.toInt * y.toInt

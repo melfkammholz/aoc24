@@ -4,13 +4,12 @@ import scala.io.Source
 
 object C {
   def main(args: Array[String]): Unit = {
-    val mulPat = "mul\\(([0-9]+),([0-9]+)\\)(.*)".r
     var inp = Source.stdin.getLines().mkString
 
+    val isNum: String => Boolean = _.forall(Character.isDigit)
     var res = 0
     var use = true
-    var done = false
-    while !done do
+    while !inp.isEmpty do
       inp match {
         case s"do()$r" =>
           use = true
@@ -18,12 +17,11 @@ object C {
         case s"don't()$r" =>
           use = false
           inp = r
-        case mulPat(y, z, r) =>
+        case s"mul($x,$y)$r" if isNum(x) && isNum(y) =>
           if use then
-            res += y.toInt * z.toInt
+            res += x.toInt * y.toInt
           inp = r
-        case _ if !inp.isEmpty() => inp = inp.tail
-        case _ => done = true
+        case _ => inp = inp.tail
       }
 
     println(res)  // 92626942
