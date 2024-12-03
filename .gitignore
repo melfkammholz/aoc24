@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/macos,linux,windows,scala,metals
-# Edit at https://www.toptal.com/developers/gitignore?templates=macos,linux,windows,scala,metals
+# Created by https://www.toptal.com/developers/gitignore/api/macos,linux,windows,scala,metals,sbt
+# Edit at https://www.toptal.com/developers/gitignore?templates=macos,linux,windows,scala,metals,sbt
 
 ### Linux ###
 *~
@@ -54,6 +54,23 @@ Temporary Items
 .bloop/
 project/**/metals.sbt
 
+### SBT ###
+# Simple Build Tool
+# http://www.scala-sbt.org/release/docs/Getting-Started/Directories.html#configuring-version-control
+
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+.history
+.cache
+.lib/
+
+### SBT Patch ###
+.bsp/
+
 ### Scala ###
 *.class
 *.log
@@ -87,7 +104,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/macos,linux,windows,scala,metals
+# End of https://www.toptal.com/developers/gitignore/api/macos,linux,windows,scala,metals,sbt
 
 .bsp
 .scala-build

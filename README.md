@@ -2,6 +2,15 @@
 
 [Advent of Code 2024](https://adventofcode.com/2024) solutions in Scala
 
+## Running Programs
+
+You can a given solution with the following command - depending your current
+working directory.
+```sh
+cat dayX/test.txt | sbt "runMain dayX.A"
+cat dayX/test.txt | sbt "runMain dayX.B"
+```
+
 ## Getting Started
 
 - [Getting Started | Scala Documentation](https://docs.scala-lang.org/getting-started/install-scala.html)
