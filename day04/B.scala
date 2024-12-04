@@ -26,7 +26,7 @@ object B {
       }
       res += (if ok then 1 else 0)
 
-    println(res)  // 2507
+    println(res)  // 1969
   }
 }
 
