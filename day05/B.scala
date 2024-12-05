@@ -13,11 +13,10 @@ object A {
       case "" =>
       case upd =>
         val ps = upd.split(",").map(_.toInt)
-        val notOk =
-          ps.indices.exists(i =>
-            (i + 1 until ps.length).exists(j => !adj(ps(i)).contains(ps(j))))
-        if notOk then
-          res += ps.sortWith(adj(_).contains(_))(ps.length / 2)
+        val ok =
+          ps.indices.forall(i =>
+            (i + 1 until ps.length).forall(j => adj(ps(i)).contains(ps(j))))
+        res += (if ok then 0 else ps.sortWith(adj(_).contains(_))(ps.length / 2))
     }
     println(res)  // 5723
   }
