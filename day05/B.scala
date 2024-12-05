@@ -3,7 +3,7 @@ package day05
 import scala.collection.mutable.{ListBuffer, Map}
 import scala.io.Source
 
-object A {
+object B {
   def main(args: Array[String]): Unit = {
     var res = 0
     val adj = Map[Int, ListBuffer[Int]]().withDefault(_ => ListBuffer())
