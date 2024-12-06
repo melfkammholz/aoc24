@@ -21,20 +21,13 @@ object A {
     while inBounds(y, x) do
       // ouch
       while g(y)(x) == '#' do
-        y -= dy
-        x -= dx
-
-        val tmp = -dy
-        dy = dx
-        dx = tmp
-
-        y += dy
-        x += dx
+        y -= dy; x -= dx
+        val tmp = -dy; dy = dx; dx = tmp
+        y += dy; x += dx
 
       seen.add((y, x))
 
-      y += dy
-      x += dx
+      y += dy; x += dx
 
     println(seen.size)  // 5208
   }

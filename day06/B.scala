@@ -12,42 +12,36 @@ object B {
     val sy = g.indexWhere(_.contains('^'))
     val sx = g(sy).indexOf('^')
 
+    val inBounds: (Int, Int) => Boolean =
+      g.indices.contains(_) && g.head.indices.contains(_)
+
     var res = 0
     for
       oy <- g.indices
       ox <- g(oy).indices
       if g(oy)(ox) == '.'
     do
+      g(oy)(ox) = '#'
+
       var (y, x) = (sy, sx)
       var (dy, dx) = (-1, 0)
-      var og = g.map(_.clone)
-      og(oy)(ox) = '#'
-
-      val inBounds: (Int, Int) => Boolean =
-        og.indices.contains(_) && og.head.indices.contains(_)
 
       var loop = false
       val seen = Set[(Int, Int, Int, Int)]()
       while inBounds(y, x) && !loop do
         // ouch
-        while og(y)(x) == '#' do
-          y -= dy
-          x -= dx
-
-          val tmp = -dy
-          dy = dx
-          dx = tmp
-
-          y += dy
-          x += dx
+        while g(y)(x) == '#' do
+          y -= dy; x -= dx
+          val tmp = -dy; dy = dx; dx = tmp
+          y += dy; x += dx
 
         loop = seen.contains((y, x, dy, dx))
         if !loop then
           seen.add((y, x, dy, dx))
-          y += dy
-          x += dx
+          y += dy; x += dx
 
       res += (if loop then 1 else 0)
+      g(oy)(ox) = '.'
 
     println(res)  // 1972
   }
