@@ -7,12 +7,12 @@ object B {
   def main(args: Array[String]): Unit = {
     var res = 0l
 
-    lazy val check: List[Long] => List[Long] = {
-      case Nil => throw IllegalArgumentException
+    lazy val gen: List[Long] => List[Long] = {
+      case Nil => throw IllegalArgumentException()
       case x :: Nil => x :: Nil
       case x :: xs =>
         for
-          y <- check(xs)
+          y <- gen(xs)
           z <- x + y :: x * y :: y * pow(10l, x.toString.length).longValue + x :: Nil
         yield z
     }
@@ -21,7 +21,7 @@ object B {
       case s"$a: $xs" =>
         val b = a.toLong
         val ys = xs.split(" ").map(_.toLong).toList
-        res += (if check(ys.reverse).exists(b.equals(_)) then b else 0)
+        res += (if gen(ys.reverse).exists(b.equals(_)) then b else 0)
     }
 
     println(res)  // 426214131924213
