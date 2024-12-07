@@ -21,7 +21,7 @@ object B {
       case s"$a: $xs" =>
         val b = a.toLong
         val ys = xs.split(" ").map(_.toLong).toList
-        res += (if gen(ys.reverse).exists(b.equals(_)) then b else 0)
+        res += (if gen(ys.reverse).contains(b) then b else 0)
     }
 
     println(res)  // 426214131924213
