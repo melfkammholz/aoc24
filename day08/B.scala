@@ -27,6 +27,7 @@ object B {
         if ay == by && ax == bx then
           false
         else
+          assert(ay != by && ax != bx)
           val col = (ax - x) * (by - y) - (bx - x) * (ay - y) == 0
           val dist = (bx - x) % (bx - ax) == 0 && (by - y) % (by - ay) == 0
           col && dist
