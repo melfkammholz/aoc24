@@ -23,6 +23,8 @@ object B {
           res
         }
 
+    val sum: (Long, Long) => Long = (a, b) => (b - 1) * b / 2 - (a - 1) * a / 2
+
     var chksm = 0l
     var c = 0
     for l <- 0 until dsk.size do
@@ -30,10 +32,9 @@ object B {
         c += cpy(l)
       else
         if l % 2 == 0 then
-          while dsk(l) > 0 do
-            dsk(l) -= 1
-            chksm += c * ((l + 1) / 2)
-            c += 1
+          chksm += sum(c, c + dsk(l)) * ((l + 1) / 2)
+          c += dsk(l)
+          dsk(l) = 0
         else
           while dsk(l) > 0 do
             next(dsk(l)) match {
@@ -41,11 +42,10 @@ object B {
                 c += dsk(l)
                 dsk(l) = 0
               case Some(j) =>
-                while dsk(j) > 0 do
-                  dsk(l) -= 1
-                  dsk(j) -= 1
-                  chksm += c * ((j + 1) / 2)
-                  c += 1
+                dsk(l) -= dsk(j)
+                chksm += sum(c, c + dsk(j)) * ((j + 1) / 2)
+                c += dsk(j)
+                dsk(j) = 0
             }
 
     println(chksm)  // 6382582136592
