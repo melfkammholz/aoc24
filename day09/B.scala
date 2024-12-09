@@ -1,6 +1,5 @@
 package day09
 
-import scala.collection.mutable.Set
 import scala.io.Source
 
 object B {
@@ -8,7 +7,7 @@ object B {
     var dsk = Source.stdin.getLines().next.split("").map(_.toInt)
     var cpy = dsk.clone
 
-    val frags = Array.ofDim[List[Int]](10).mapInPlace(_ => List.empty[Int])
+    val frags = Array.fill(10)(List.empty[Int])
     for i <- dsk.indices.filter(_ % 2 == 0) do
       frags(dsk(i)) = i :: frags(dsk(i))
 
@@ -24,15 +23,12 @@ object B {
           res
         }
 
-    val seen = Set[Int]()
     var chksm = 0l
     var c = 0
-    var l = 0
-    while l < dsk.size do
-      if seen.contains(l) then
+    for l <- 0 until dsk.size do
+      if dsk(l) == 0 then
         c += cpy(l)
       else
-        seen.add(l)
         if l % 2 == 0 then
           while dsk(l) > 0 do
             dsk(l) -= 1
@@ -45,14 +41,12 @@ object B {
                 c += dsk(l)
                 dsk(l) = 0
               case Some(j) =>
-                seen.add(j)
                 while dsk(j) > 0 do
                   dsk(l) -= 1
                   dsk(j) -= 1
                   chksm += c * ((j + 1) / 2)
                   c += 1
             }
-      l += 1
 
     println(chksm)  // 6382582136592
   }
