@@ -61,7 +61,8 @@ object B {
                   c += 1
             }
       l += 1
-    println(chksm)
+
+    println(chksm)  // 6382582136592
   }
 }
 

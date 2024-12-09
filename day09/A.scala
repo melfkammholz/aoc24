@@ -31,7 +31,8 @@ object A {
             j -= 1
             r -= 2
       l += 1
-    println(chksm)
+
+    println(chksm)  // 6353658451014
   }
 }
 
