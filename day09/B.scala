@@ -13,24 +13,16 @@ object B {
       frags(dsk(i)) = i :: frags(dsk(i))
 
     val next: Int => Option[Int] = l =>
-      var a: Option[Int] = None
-      for s <- l to 1 by -1 do
-        frags(s) match {
-          case Nil =>
-          case x :: _ =>
-            if a.isEmpty then
-              a = Some(s)
-            else
-              if frags(a.get).head < x then
-                a = Some(s)
+      (l to 1 by -1)
+        .filter(frags(_).headOption.isDefined)
+        .map(s => (frags(s), s))
+        .maxOption
+        .map(_._2)
+        .map { s =>
+          var (res :: tail) = frags(s) : @unchecked
+          frags(s) = tail
+          res
         }
-
-      if a.isEmpty then
-        None
-      else
-        var res = frags(a.get).head
-        frags(a.get) = frags(a.get).tail
-        Some(res)
 
     val seen = Set[Int]()
     var chksm = 0l
