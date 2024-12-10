@@ -27,26 +27,24 @@ object B {
 
     var chksm = 0l
     var c = 0
-    for l <- 0 until dsk.size do
+    for l <- 0 until dsk.size by 2 do
       if dsk(l) == 0 then
         c += cpy(l)
       else
-        if l % 2 == 0 then
-          chksm += sum(c, c + dsk(l)) * ((l + 1) / 2)
-          c += dsk(l)
-          dsk(l) = 0
-        else
-          while dsk(l) > 0 do
-            next(dsk(l)) match {
-              case None =>
-                c += dsk(l)
-                dsk(l) = 0
-              case Some(j) =>
-                dsk(l) -= dsk(j)
-                chksm += sum(c, c + dsk(j)) * ((j + 1) / 2)
-                c += dsk(j)
-                dsk(j) = 0
-            }
+        chksm += sum(c, c + dsk(l)) * ((l + 1) / 2)
+        c += dsk(l)
+        dsk(l) = 0
+      while l + 1 < dsk.size && dsk(l + 1) > 0 do
+        next(dsk(l + 1)) match {
+          case None =>
+            c += dsk(l + 1)
+            dsk(l + 1) = 0
+          case Some(j) =>
+            dsk(l + 1) -= dsk(j)
+            chksm += sum(c, c + dsk(j)) * ((j + 1) / 2)
+            c += dsk(j)
+            dsk(j) = 0
+        }
 
     println(chksm)  // 6382582136592
   }
