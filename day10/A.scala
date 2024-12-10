@@ -11,8 +11,7 @@ object A {
     val dirs = List((-1, 0), (0, 1), (1, 0), (0, -1))
 
     var res = 0
-    var seen = Set[(Int, Int)]()
-    lazy val dfs: (Int, Int) => Unit = (y, x) =>
+    lazy val dfs: (Int, Int, Set[(Int, Int)]) => Unit = (y, x, seen) =>
       if !seen.contains((y, x)) then
         seen.add((y, x))
         if g(y)(x) == 9 then
@@ -23,15 +22,14 @@ object A {
             if (0 until m).contains(y + dy) && (0 until n).contains(x + dx)
             if g(y)(x) + 1 == g(y + dy)(x + dx)
           do
-            dfs(y + dy, x + dx)
+            dfs(y + dy, x + dx, seen)
 
     for
       y <- 0 until m
       x <- 0 until n
       if g(y)(x) == 0
     do
-      seen.clear()
-      dfs(y, x)
+      dfs(y, x, Set())
     println(res)  // 746
   }
 }
