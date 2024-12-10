@@ -1,6 +1,5 @@
 package day10
 
-import scala.collection.mutable.*
 import scala.io.Source
 
 object B {
@@ -11,20 +10,16 @@ object B {
     val dirs = List((-1, 0), (0, 1), (1, 0), (0, -1))
 
     var res = 0
-    var seen = Set[(Int, Int)]()
     lazy val dfs: (Int, Int) => Unit = (y, x) =>
-      if !seen.contains((y, x)) then
-        seen.add((y, x))
-        if g(y)(x) == 9 then
-          res += 1
-        else
-          for
-            (dy, dx) <- dirs
-            if (0 until m).contains(y + dy) && (0 until n).contains(x + dx)
-            if g(y)(x) + 1 == g(y + dy)(x + dx)
-          do
-            dfs(y + dy, x + dx)
-        seen.remove((y, x))
+      if g(y)(x) == 9 then
+        res += 1
+      else
+        for
+          (dy, dx) <- dirs
+          if (0 until m).contains(y + dy) && (0 until n).contains(x + dx)
+          if g(y)(x) + 1 == g(y + dy)(x + dx)
+        do
+          dfs(y + dy, x + dx)
 
     for
       y <- 0 until m
