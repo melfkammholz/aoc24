@@ -3,7 +3,7 @@ package day10
 import scala.collection.mutable.*
 import scala.io.Source
 
-object A {
+object B {
   def main(args: Array[String]): Unit = {
     val g = Source.stdin.getLines.map(_.split("").map(_.toInt)).toArray
     val (m, n) = (g.length, g.head.length)
@@ -31,7 +31,6 @@ object A {
       x <- 0 until n
       if g(y)(x) == 0
     do
-      seen.clear()
       dfs(y, x)
     println(res)  // 1541
   }
