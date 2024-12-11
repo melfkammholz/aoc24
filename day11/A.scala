@@ -13,8 +13,8 @@ def main(args: Array[String]): Unit = {
     case (_, s) if s == n => 1
     case (0, s) => solve(1, s + 1)
     case (x, s) =>
-      lazy val d = log10(x).longValue + 1
       if !dp(s).contains(x) then
+        val d = log10(x).longValue + 1
         if d % 2 == 0 then
           val p = pow(10, d / 2).longValue
           dp(s)(x) = solve(x / p, s + 1) + solve(x % p, s + 1)
@@ -22,9 +22,6 @@ def main(args: Array[String]): Unit = {
           dp(s)(x) = solve(2024 * x, s + 1)
       dp(s)(x)
 
-  var res = 0l
-  for x <- xs do
-    res += solve(x, 0)
-  println(res)  // 189167
+  println(xs.map(solve(_, 0)).sum)  // 189167
 }
 
