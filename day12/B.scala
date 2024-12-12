@@ -1,7 +1,6 @@
 package day12
 
 import scala.collection.mutable.*
-import scala.math.{log10, pow}
 import scala.io.Source
 
 def main(args: Array[String]): Unit = {
@@ -19,10 +18,8 @@ def main(args: Array[String]): Unit = {
 
     var done = false
     while !done do
-      val ny = y + dy
-      val nx = x + dx
-      val my = y + oy
-      val mx = x + ox
+      val (ny, nx) = (y + dy, x + dx)
+      val (my, mx) = (y + oy, x + ox)
 
       val ok = inb(ny, nx) && g(y)(x) == g(ny)(nx)
             && (!inb(my, mx) || g(ny)(nx) != g(my)(mx))
@@ -40,8 +37,7 @@ def main(args: Array[String]): Unit = {
       seen(y)(x) = true
       var a = 1
       for (dy, dx) <- dirs do
-        val ny = y + dy
-        val nx = x + dx
+        val (ny, nx) = (y + dy, x + dx)
         if inb(ny, nx) && g(y)(x) == g(ny)(nx) then
           a += dfs(ny, nx, s)
         else
@@ -49,12 +45,10 @@ def main(args: Array[String]): Unit = {
       a
 
   var res = 0
-  for
-    y <- 0 until h
-    x <- 0 until w
-  do
+  for y <- 0 until h; x <- 0 until w do
     val s = Set[(Int, Int, Int, Int)]()
     res += dfs(y, x, s) * s.size
-  println(res)
+
+  println(res)  // 830516
 }
 
