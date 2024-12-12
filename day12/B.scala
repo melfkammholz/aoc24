@@ -12,23 +12,17 @@ def main(args: Array[String]): Unit = {
   val dirs = List((-1, 0), (0, 1), (1, 0), (0, -1))
   val seen = Array.fill(h, w)(false)
 
-  val side: (Int, Int, Int, Int, Set[(Int, Int, Int, Int)]) => Unit = (sy, sx, dy, dx, s) =>
-    var (y, x) = (sy, sx)
-    val (oy, ox) = (-dx, dy)
+  lazy val side: (Int, Int, Int, Int, Set[(Int, Int, Int, Int)]) => Unit = (y, x, dy, dx, s) =>
+    val (ny, nx) = (y + dy, x + dx)
+    val (my, mx) = (y - dx, x + dy)
 
-    var done = false
-    while !done do
-      val (ny, nx) = (y + dy, x + dx)
-      val (my, mx) = (y + oy, x + ox)
+    val ok = inb(ny, nx) && g(y)(x) == g(ny)(nx)
+          && (!inb(my, mx) || g(ny)(nx) != g(my)(mx))
 
-      val ok = inb(ny, nx) && g(y)(x) == g(ny)(nx)
-            && (!inb(my, mx) || g(ny)(nx) != g(my)(mx))
-      if ok then
-        y = ny
-        x = nx
-      else
-        done = true
-    s.add((y, x, dy, dx))
+    if ok then
+      side(ny, nx, dy, dx, s)
+    else
+      s.add((y, x, dy, dx))
 
   lazy val dfs: (Int, Int, Set[(Int, Int, Int, Int)]) => Int = (y, x, s) =>
     if seen(y)(x) then
