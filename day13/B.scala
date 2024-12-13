@@ -20,7 +20,7 @@ def main(args: Array[String]): Unit = {
       val u = a * b2 - a2 * b
       val v = a1 * b - a * b1
 
-      res += (if u % d.abs == 0 && v % d.abs == 0 then 3 * (u / d) + v / d else 0)
+      res += (if u % d == 0 && v % d == 0 then 3 * (u / d) + v / d else 0)
     case _ =>
   }
 
