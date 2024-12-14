@@ -7,7 +7,7 @@ extension (x: Int)
 
 object A:
   def main(args: Array[String]): Unit =
-    val (w, h): (Int, Int) = (101, 103)
+    val (w, h) = (101, 103)
     val t = 100
 
     var cnt = Array.fill(4)(0)

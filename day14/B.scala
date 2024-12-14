@@ -7,7 +7,7 @@ extension (x: Int)
 
 object B:
   def main(args: Array[String]): Unit =
-    val (w, h): (Int, Int) = (101, 103)
+    val (w, h) = (101, 103)
 
     val rs = Source.stdin.getLines.toArray.map:
       case s"p=$px,$py v=$vx,$vy" =>
