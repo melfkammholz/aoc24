@@ -1,6 +1,5 @@
 package day14
 
-import scala.math.{pow,sqrt}
 import scala.io.Source
 
 extension (x: Int)

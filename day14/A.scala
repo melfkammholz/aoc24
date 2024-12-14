@@ -2,6 +2,9 @@ package day14
 
 import scala.io.Source
 
+extension (x: Int)
+  infix def %%(m: Int) = (x % m + m) % m
+
 object A:
   def main(args: Array[String]): Unit =
     val (w, h): (Int, Int) = (101, 103)
@@ -11,7 +14,7 @@ object A:
     Source.stdin.getLines.foreach:
       case s"p=$px,$py v=$vx,$vy" =>
         val (x, y, dx, dy) = (px.toInt, py.toInt, vx.toInt, vy.toInt)
-        val (tx, ty) = (((x + t * dx) % w + w) % w, ((y + t * dy) % h + h) % h)
+        val (tx, ty) = ((x + t * dx) %% w, (y + t * dy) %% h)
         if tx != w / 2 && ty != h / 2 then
           val bx = ((tx - w / 2).sign + 1) / 2
           val by = ((ty - h / 2).sign + 1) / 2
