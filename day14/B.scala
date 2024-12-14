@@ -33,9 +33,7 @@ object B extends IOApp.Simple:
     val n = Runtime.getRuntime.availableProcessors
     val res = Stream.range(0, w * h)
       .chunkN(w * h / n)
-      .parEvalMapUnordered(n)(chunk => IO {
-        chunk.map(t => (maxCluster(t), t))
-      })
+      .parEvalMapUnordered(n)(chunk => IO(chunk.map(t => (maxCluster(t), t))))
       .unchunks
       .reduce((a, b) => if a._1 < b._1 then b else a)
       .map(_._2)
