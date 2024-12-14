@@ -8,7 +8,7 @@ package day14
 import scala.io.Source
 
 import cats.effect.unsafe.implicits._
-import cats.effect.IO
+import cats.effect._
 import fs2.Stream
 import smile.clustering.dbscan
 
@@ -16,8 +16,8 @@ import smile.clustering.dbscan
 // extension (x: Int)
 //   infix def %%(m: Int) = (x % m + m) % m
 
-object B:
-  def main(args: Array[String]): Unit =
+object B extends IOApp.Simple:
+  def run: IO[Unit] =
     val (w, h) = (101, 103)
 
     val rs = Source.stdin.getLines.toArray.map:
@@ -41,7 +41,6 @@ object B:
       .map(_._2)
       .compile
       .last
-      .unsafeRunSync()
 
-    println(res.get)  // 8168
+    res.flatMap(m => IO.println(m.get))  // 8168
 
