@@ -33,7 +33,7 @@ object B:
     val n = Runtime.getRuntime.availableProcessors
     val res = Stream.range(0, w * h)
       .chunkN(w * h / n)
-      .parEvalMapUnordered(Runtime.getRuntime.availableProcessors())(chunk => IO {
+      .parEvalMapUnordered(n)(chunk => IO {
         chunk.map(t => (maxCluster(t), t))
       })
       .unchunks
