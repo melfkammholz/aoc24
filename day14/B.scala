@@ -7,7 +7,6 @@ package day14
 
 import scala.io.Source
 
-import cats.effect.unsafe.implicits._
 import cats.effect._
 import fs2.Stream
 import smile.clustering.dbscan
