@@ -21,10 +21,10 @@ object B:
       regs('A') = a
 
       val rslv = Map[Long, Function0[Long]](
-        0l -> (() => 0l),
-        1l -> (() => 1l),
-        2l -> (() => 2l),
-        3l -> (() => 3l),
+        0l -> (() => 0),
+        1l -> (() => 1),
+        2l -> (() => 2),
+        3l -> (() => 3),
         4l -> (() => regs('A')),
         5l -> (() => regs('B')),
         6l -> (() => regs('C')),
@@ -35,13 +35,13 @@ object B:
       var pc = 0
       while pc + 1 < prog.size do
         (prog(pc), prog(pc + 1)) match
-          case (0l, c) => regs('A') /= (1 << rslv(c)())
-          case (1l, l) => regs('B') ^= l
-          case (2l, c) => regs('B') = rslv(c)() % 8
-          case (3l, _) if regs('A') == 0 =>
-          case (3l, l) => pc = l.toInt - 2
-          case (4l, _) => regs('B') ^= regs('C')
-          case (5l, c) => res = res :+ rslv(c)() % 8
+          case (0, c) => regs('A') /= (1 << rslv(c)())
+          case (1, l) => regs('B') ^= l
+          case (2, c) => regs('B') = rslv(c)() % 8
+          case (3, _) if regs('A') == 0 =>
+          case (3, l) => pc = l.toInt - 2
+          case (4, _) => regs('B') ^= regs('C')
+          case (5, c) => res = res :+ rslv(c)() % 8
           case (6, c) => regs('B') = regs('A') / (1 << rslv(c)())
           case (7, c) => regs('C') = regs('A') / (1 << rslv(c)())
         pc += 2
