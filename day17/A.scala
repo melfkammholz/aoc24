@@ -28,7 +28,6 @@ object A:
     var res = Array[Int]()
     var pc = 0
     while pc + 1 < prog.size do
-      println(regs)
       (prog(pc), prog(pc + 1)) match
         case (0, c) => regs('A') /= (1 << rslv(c)())
         case (1, l) => regs('B') ^= l
@@ -42,3 +41,4 @@ object A:
       pc += 2
 
     println(res.mkString(","))
+
