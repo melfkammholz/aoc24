@@ -31,19 +31,19 @@ object B:
           x += dx
         case None =>
 
-    var res = 0
-    for
-      y <- 0 until h
-      x <- 0 until w
-      if g(y)(x) != '#'
-      dy <- -20 to 20
-      dx <- -20 + dy.abs to 20 - dy.abs
-      if (0 until h).contains(y + dy) && (0 until w).contains(x + dx)
-      if g(y + dy)(x + dx) != '#'
-      dt = dist(y + dy)(x + dx) - dist(y)(x) - dy.abs - dx.abs
-      if dt >= 100
-    do
-      res += 1
+    var res = {
+      for
+        y <- 0 until h
+        x <- 0 until w
+        if g(y)(x) != '#'
+        dy <- -20 to 20
+        dx <- -20 + dy.abs to 20 - dy.abs
+        if (0 until h).contains(y + dy) && (0 until w).contains(x + dx)
+        if g(y + dy)(x + dx) != '#'
+        dt = dist(y + dy)(x + dx) - dist(y)(x) - dy.abs - dx.abs
+        if dt >= 100
+       yield 1
+    }.sum
 
     println(res)  // 1020507
 
