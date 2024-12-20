@@ -31,7 +31,7 @@ object B:
           x += dx
         case None =>
 
-    var res = {
+    val res = {
       for
         y <- 0 until h
         x <- 0 until w
