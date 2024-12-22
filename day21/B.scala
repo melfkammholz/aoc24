@@ -6,7 +6,7 @@ import scala.io.Source
 
 object A:
   def main(args: Array[String]): Unit =
-    val n = 2
+    val n = 25
 
     val numpad = Array(
       Array('7', '8', '9'),
@@ -69,5 +69,5 @@ object A:
       var sco = ins.zip(ins.tail).map(dp(_)(_)(n - 1)).sum
       res += sco * code.init.toInt
 
-    println(res)  // 217662
+    println(res)  // 263617786809000
 
