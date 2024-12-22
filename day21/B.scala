@@ -4,7 +4,7 @@ import scala.collection.mutable.*
 import scala.io.Source
 
 
-object A:
+object B:
   def main(args: Array[String]): Unit =
     val n = 25
 
