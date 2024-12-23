@@ -18,7 +18,7 @@ object B:
     lazy val solve: (Set[String], Set[String]) => Unit = (c, ws) =>
       if !seen.contains((c, ws)) && !ws.isEmpty then
         for w <- ws do
-          solve(c + w, c.foldLeft(adj(w))((us, v) => us.intersect(adj(v))))
+          solve(c + w, c.map(adj).foldLeft(adj(w))(_ intersect _))
       seen.add((c, ws))
 
     adj.keys.foreach(v => solve(Set(v), adj(v)))
