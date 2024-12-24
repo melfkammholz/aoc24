@@ -19,7 +19,7 @@ object B:
       if !seen.contains((c, ws)) && !ws.isEmpty then
         for w <- ws do
           solve(c + w, c.map(adj).foldLeft(adj(w))(_ intersect _))
-        seen.add((c, ws))
+      seen.add((c, ws))
 
     adj.keys.foreach(v => solve(Set(v), adj(v)))
     println(seen.maxBy(_._1.size)._1.toBuffer.sorted.mkString(","))  // ab,al,cq,cr,da,db,dr,fw,ly,mn,od,py,uh
